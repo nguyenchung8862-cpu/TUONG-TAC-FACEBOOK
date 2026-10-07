@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'll47-command-v4-11'
+const CACHE_VERSION = 'll47-command-v4-13'
 const STATIC_CACHE = `${CACHE_VERSION}-static`
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`
 const scopeUrl = new URL(self.registration.scope)

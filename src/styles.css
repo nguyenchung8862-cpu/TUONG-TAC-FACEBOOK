@@ -2168,3 +2168,91 @@ button.campaign-row.tactical-row:not(.campaign-manage-row) {
   }
   .app-scroll { bottom: calc(58px + env(safe-area-inset-bottom)); }
 }
+
+/* ======================================================================
+   V4.13 — iPhone bottom safe-area hard fix
+   iOS already reserves a physical home-indicator area. The previous build
+   added that inset on top of the navigation height, making the dark footer
+   look much deeper than necessary. Keep the navigation at a fixed visual
+   height and consume only part of the inset inside that height.
+   ====================================================================== */
+@media (max-width: 460px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    overflow: hidden;
+  }
+
+  .desktop-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    display: block;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .app-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Do not add env(safe-area-inset-bottom) to the footer height again. */
+  .bottom-nav,
+  .bottom-nav.five-items {
+    bottom: 0;
+    height: 66px;
+    min-height: 66px;
+    padding: 3px 9px max(2px, calc(env(safe-area-inset-bottom) - 18px));
+  }
+
+  .app-scroll {
+    bottom: 66px;
+    padding-bottom: 18px;
+  }
+
+  .nav-item {
+    min-height: 0;
+    gap: 1px;
+  }
+
+  .nav-icon { height: 25px; }
+
+  /* iOS standalone/browser viewport: pin to the real visible viewport so no
+     body background can appear as a black strip below the application. */
+  @supports (-webkit-touch-callout: none) {
+    .desktop-canvas,
+    .app-frame {
+      height: auto !important;
+      max-height: none !important;
+      inset: 0 !important;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .bottom-nav,
+  .bottom-nav.five-items {
+    height: 62px;
+    min-height: 62px;
+    padding-bottom: max(2px, calc(env(safe-area-inset-bottom) - 20px));
+  }
+
+  .app-scroll { bottom: 62px; }
+}
