@@ -53,14 +53,20 @@ Nếu trình duyệt không hiện hộp cài tự động: mở menu `⋮` → 
 
 > Dữ liệu thật vẫn nằm ở backend laptop như kiến trúc đã chốt. PWA chỉ là lớp giao diện được cài lên điện thoại.
 
-## V4.13 — tối ưu iPhone / safe-area
+## V4.14 — tối ưu iPhone / safe-area
 - Header và bottom navigation tràn nền vào vùng Dynamic Island / Home Indicator thay vì tạo dải đen riêng.
 - Giảm chiều cao phần chrome trên điện thoại nhưng vẫn giữ nội dung tránh vùng cảm ứng hệ thống.
 - Trang đăng nhập không cộng thêm khoảng trống 34px ngoài safe-area nữa.
 - Toàn bộ giao diện và chức năng V4.11 được giữ nguyên.
 
 
-## V4.13 — iPhone bottom safe-area fix
+## V4.14 — iPhone bottom safe-area fix
 - Bottom navigation no longer adds the full Home Indicator inset to its height.
 - Mobile shell is pinned with `inset: 0` to the real viewport to prevent an exposed black strip.
 - PWA cache version bumped so iPhone receives the new CSS instead of the previous cached build.
+
+
+## V4.14 iOS edge-to-edge
+- Thanh điều hướng dưới giảm còn 52px, không cộng safe-area vào chiều cao.
+- Nội dung kéo sát mép dưới hơn; nền app phủ xuyên vùng Home Indicator.
+- Nếu kiểm tra trong Safari thay vì PWA đã cài, thanh công cụ của Safari vẫn là UI hệ thống và không thể xóa bằng CSS.

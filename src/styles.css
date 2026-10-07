@@ -2256,3 +2256,111 @@ button.campaign-row.tactical-row:not(.campaign-manage-row) {
 
   .app-scroll { bottom: 62px; }
 }
+
+/* ======================================================================
+   V4.14 — iOS EDGE-TO-EDGE BOTTOM BAR
+   Không cộng safe-area vào chiều cao thanh điều hướng. Thanh đáy chỉ cao
+   đúng phần UI cần thiết, nội dung kéo xuống sát mép viewport hơn.
+   ====================================================================== */
+@media (max-width: 460px) {
+  html,
+  body,
+  #root,
+  .desktop-canvas,
+  .app-frame {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: var(--bg) !important;
+  }
+
+  /* Thanh đáy thực sự mỏng: không cộng env(safe-area-inset-bottom). */
+  .bottom-nav,
+  .bottom-nav.five-items {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 52px !important;
+    min-height: 52px !important;
+    padding: 2px 8px 1px !important;
+    align-items: stretch !important;
+    box-sizing: border-box !important;
+  }
+
+  .bottom-nav .nav-item,
+  .bottom-nav.five-items .nav-item {
+    height: 48px !important;
+    min-height: 0 !important;
+    padding: 2px 1px 3px !important;
+    gap: 0 !important;
+    justify-content: center !important;
+    transform: translateY(-1px);
+  }
+
+  .bottom-nav .nav-icon,
+  .bottom-nav.five-items .nav-icon {
+    width: 30px !important;
+    height: 24px !important;
+  }
+
+  .bottom-nav .nav-item > span:last-child,
+  .bottom-nav.five-items .nav-item > span:last-child {
+    line-height: 1 !important;
+    margin-top: 1px !important;
+  }
+
+  /* Nội dung chỉ chừa đúng chiều cao thanh đáy mới. */
+  .app-scroll {
+    bottom: 52px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* Các màn toàn trang không tự cộng thêm vùng đáy iOS. */
+  .detail-page {
+    padding-bottom: 14px !important;
+  }
+
+  .login-page {
+    height: 100dvh !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* iPhone/iPad web-app: cho nền ứng dụng phủ xuyên xuống Home Indicator. */
+  @supports (-webkit-touch-callout: none) {
+    html,
+    body,
+    #root,
+    .desktop-canvas,
+    .app-frame,
+    .login-page {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      background-color: var(--bg) !important;
+    }
+
+    .bottom-nav,
+    .bottom-nav.five-items {
+      padding-bottom: 0 !important;
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .bottom-nav,
+  .bottom-nav.five-items {
+    height: 50px !important;
+    min-height: 50px !important;
+  }
+  .bottom-nav .nav-item,
+  .bottom-nav.five-items .nav-item { height: 46px !important; }
+  .app-scroll { bottom: 50px !important; }
+}
