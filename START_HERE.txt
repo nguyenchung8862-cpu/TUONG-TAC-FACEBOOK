@@ -1,0 +1,22 @@
+SỞ CHỈ HUY LỰC LƯỢNG 47 — PWA V4.11
+=====================================
+
+CHẠY THỬ:
+1. Mở thư mục project.
+2. Chạy: npm install
+3. Chạy: npm run dev
+
+ĐƯA LÊN GITHUB PAGES:
+1. Push toàn bộ source lên GitHub (nhánh main).
+2. GitHub > Settings > Pages > chọn GitHub Actions.
+3. Chờ workflow Deploy GitHub Pages chạy xong.
+4. Mở link HTTPS của GitHub Pages bằng điện thoại.
+
+CÀI ANDROID:
+- Đăng nhập > Cá nhân > Cài ứng dụng trên điện thoại.
+- Hoặc Chrome > menu 3 chấm > Cài đặt ứng dụng / Thêm vào màn hình chính.
+
+CÀI IPHONE:
+- Mở bằng Safari > Chia sẻ > Thêm vào Màn hình chính > Thêm.
+
+Giao diện và chức năng V4.10 được giữ nguyên; bản này bổ sung PWA hoàn chỉnh.
