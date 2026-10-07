@@ -52,3 +52,9 @@ Nếu trình duyệt không hiện hộp cài tự động: mở menu `⋮` → 
 - Có hướng dẫn riêng nếu iPhone/Safari hoặc trình duyệt không hỗ trợ install prompt trực tiếp.
 
 > Dữ liệu thật vẫn nằm ở backend laptop như kiến trúc đã chốt. PWA chỉ là lớp giao diện được cài lên điện thoại.
+
+## V4.12 — tối ưu iPhone / safe-area
+- Header và bottom navigation tràn nền vào vùng Dynamic Island / Home Indicator thay vì tạo dải đen riêng.
+- Giảm chiều cao phần chrome trên điện thoại nhưng vẫn giữ nội dung tránh vùng cảm ứng hệ thống.
+- Trang đăng nhập không cộng thêm khoảng trống 34px ngoài safe-area nữa.
+- Toàn bộ giao diện và chức năng V4.11 được giữ nguyên.

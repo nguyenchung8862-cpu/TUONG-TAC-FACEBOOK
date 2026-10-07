@@ -2077,3 +2077,94 @@ button.campaign-row.tactical-row:not(.campaign-manage-row) {
   .pwa-install-steps > div { grid-template-columns:34px minmax(0,1fr); padding:8px; }
   .pwa-step-icon { width:32px; height:32px; }
 }
+
+/* ======================================================================
+   V4.12 — iOS SAFE-AREA COMPACT MODE
+   Draw header/navigation backgrounds into the iPhone safe areas instead of
+   leaving separate dark bands. Content still avoids Dynamic Island/home bar.
+   ====================================================================== */
+
+@media (max-width: 460px) {
+  html, body, #root, .desktop-canvas, .app-frame, .login-page {
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
+  /* No standalone empty safe-area strip above the header. */
+  .top-safe { display: none; }
+
+  .app-frame {
+    width: 100vw;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  /* Header paints behind the status bar / Dynamic Island. */
+  .app-header {
+    top: 0;
+    height: calc(68px + env(safe-area-inset-top));
+    min-height: calc(68px + env(safe-area-inset-top));
+    padding: calc(env(safe-area-inset-top) + 8px) 14px 8px;
+    align-items: center;
+  }
+
+  .app-header::before { top: 0; }
+  .app-header::after { bottom: 5px; }
+
+  /* Main content starts exactly after the compact header. */
+  .app-scroll {
+    top: calc(68px + env(safe-area-inset-top));
+    bottom: calc(60px + env(safe-area-inset-bottom));
+    padding-bottom: 22px;
+  }
+
+  /* Bottom navigation also paints through the home-indicator safe area. */
+  .bottom-nav,
+  .bottom-nav.five-items {
+    bottom: 0;
+    height: calc(60px + env(safe-area-inset-bottom));
+    min-height: calc(60px + env(safe-area-inset-bottom));
+    padding: 4px 9px max(4px, env(safe-area-inset-bottom));
+  }
+
+  .nav-item { gap: 1px; }
+  .nav-icon { height: 26px; }
+
+  /* Keep the offline banner inside the header without creating a second gap. */
+  .offline-banner {
+    top: env(safe-area-inset-top);
+  }
+  .offline-banner + .app-header {
+    top: 0;
+    height: calc(90px + env(safe-area-inset-top));
+    min-height: calc(90px + env(safe-area-inset-top));
+    padding-top: calc(env(safe-area-inset-top) + 30px);
+  }
+  .offline-banner ~ .app-scroll {
+    top: calc(90px + env(safe-area-inset-top));
+  }
+
+  /* Login previously added another 34px on top of the safe-area. */
+  .login-page {
+    padding: max(14px, env(safe-area-inset-top)) 20px max(14px, env(safe-area-inset-bottom));
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .app-header {
+    height: calc(64px + env(safe-area-inset-top));
+    min-height: calc(64px + env(safe-area-inset-top));
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+  .app-scroll { top: calc(64px + env(safe-area-inset-top)); }
+  .bottom-nav,
+  .bottom-nav.five-items {
+    height: calc(58px + env(safe-area-inset-bottom));
+    min-height: calc(58px + env(safe-area-inset-bottom));
+  }
+  .app-scroll { bottom: calc(58px + env(safe-area-inset-bottom)); }
+}
